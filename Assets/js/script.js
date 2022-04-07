@@ -1,7 +1,7 @@
 const time = document.getElementById("currentDay");
 const infoTextAreas = document.getElementsByClassName("information");
 const saveButtons = document.getElementsByClassName("saveBtn");
-const hour = moment().format("H");
+const hour = 10 // moment().format("H");
 
 //sets current time
 const myTimer = () => {
@@ -18,7 +18,7 @@ const timeCheck = () => {
   };
 };
 
-//save button to change local storage
+//save function to change local storage
 const saveData = hour => {
   localStorage.setItem(hour, document.querySelector(`[data-hour="${hour}"]`).value);
 };
