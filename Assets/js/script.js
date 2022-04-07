@@ -1,7 +1,7 @@
 const time = document.getElementById("currentDay");
 const infoTextAreas = document.getElementsByClassName("information");
 const saveButtons = document.getElementsByClassName("saveBtn");
-const hour = moment().format("H");
+const hour = parseInt(moment().format("H"));
 
 //sets current time
 const myTimer = () => {
@@ -12,7 +12,7 @@ const myTimer = () => {
 //changes colors based off military time
 const timeCheck = () => {
   for(textArea of infoTextAreas){
-    textArea.dataset.hour < hour ? textArea.classList.add('past') : 
+     textArea.dataset.hour < hour ? textArea.classList.add('past') : 
       textArea.dataset.hour > hour ? textArea.classList.add('future') :
       textArea.classList.add('present');    
   };
