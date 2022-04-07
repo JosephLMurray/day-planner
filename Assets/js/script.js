@@ -25,12 +25,10 @@ const timeCheck = () => {
 };
 
 //save button to change local storage
-$(".saveBtn").on("click", () => {
-  let time = $(this).siblings(".information").attr("data-hour");
-  let data = $(this).siblings(".information").val();
-
-  localStorage.setItem(time, data);
-});
+const saveData = hour => {
+  const data = document.querySelector(`[data-hour="${hour}"]`).value;
+  localStorage.setItem(hour, data);
+};
 
 
 //recall saved data upon load
@@ -50,7 +48,7 @@ const buildSections = () => {
     allSections += `<section id="hour-nine" class="row time-block">` +
                    `<div class="col-md-1 hour">${i === 9 ? '0' + i : i}:00</div>` +
                    `<textarea class="col-md-10 information" data-hour="${i === 9 ? '0' + i : i}"></textarea>` +
-                   `<button class="btn saveBtn col-md-1"><i class="fa fa-save" style="font-size: 36px;"></i></button>` +
+                   `<button onclick="saveData(${i === 9 ? '0' + i : i})" class="btn saveBtn col-md-1"><i class="fa fa-save" style="font-size: 36px;"></i></button>` +
                    `</section>`
   }
   document.getElementById("container").innerHTML += allSections
