@@ -1,7 +1,7 @@
 const time = document.getElementById("currentDay");
 const infoTextAreas = document.getElementsByClassName("information");
 const saveButtons = document.getElementsByClassName("saveBtn");
-const hour = 10 // moment().format("H");
+const hour = moment().format("H");
 
 //sets current time
 const myTimer = () => {
