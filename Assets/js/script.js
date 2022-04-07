@@ -12,8 +12,8 @@ const myTimer = () => {
 //changes colors based off military time
 const timeCheck = () => {
   for(textArea of infoTextAreas){
-     textArea.dataset.hour < hour ? textArea.classList.add('past') : 
-      textArea.dataset.hour > hour ? textArea.classList.add('future') :
+     parseInt(textArea.dataset.hour) < hour ? textArea.classList.add('past') : 
+      parseInt(textArea.dataset.hour) > hour ? textArea.classList.add('future') :
       textArea.classList.add('present');    
   };
 };
@@ -30,14 +30,22 @@ const checkStorage = () => {
   };
 };
 
+//converts time from military time to standard time
+const convertTime = militaryTime => {
+  let standardTime = militaryTime - 12;
+  return standardTime < 0 ? `${militaryTime} AM` :
+    standardTime > 0 ? `${standardTime} PM` :
+    `${militaryTime} PM`;
+};
+
 //builds the sections of the planner programatically
 const buildSections = () => {
   let allSections = '';
   for(let i = 9; i < 18; i++){
-    allSections += `<section id="hour-nine" class="row time-block">` +
-                   `<div class="col-md-1 hour">${i === 9 ? '0' + i : i}:00</div>` +
-                   `<textarea class="col-md-10 information" data-hour="${i === 9 ? '0' + i : i}"></textarea>` +
-                   `<button onclick="saveData(${i === 9 ? '0' + i : i})" class="btn saveBtn col-md-1"><i class="fa fa-save" style="font-size: 36px;"></i></button>` +
+    allSections += `<section class="row time-block">` +
+                   `<div class="col-md-1 hour">${convertTime(i)}</div>` +
+                   `<textarea class="col-md-10 information" data-hour="${i}"></textarea>` +
+                   `<button onclick="saveData(${i})" class="btn saveBtn col-md-1"><i class="fa fa-save" style="font-size: 36px;"></i></button>` +
                    `</section>`
   }
   document.getElementById("container").innerHTML += allSections
