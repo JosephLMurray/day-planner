@@ -12,22 +12,15 @@ const myTimer = () => {
 //changes colors based off military time
 const timeCheck = () => {
   for(textArea of infoTextAreas){
-    if (textArea.dataset.hour < hour){
-      textArea.classList.add('past'); 
-    };
-    if (textArea.dataset.hour == hour) {
-      textArea.classList.add('present');
-    };
-    if (textArea.dataset.hour > hour) {
-      textArea.classList.add('future');
-    };
+    textArea.dataset.hour < hour ? textArea.classList.add('past') : 
+      textArea.dataset.hour > hour ? textArea.classList.add('future') :
+      textArea.classList.add('present');    
   };
 };
 
 //save button to change local storage
 const saveData = hour => {
-  const data = document.querySelector(`[data-hour="${hour}"]`).value;
-  localStorage.setItem(hour, data);
+  localStorage.setItem(hour, document.querySelector(`[data-hour="${hour}"]`).value);
 };
 
 
