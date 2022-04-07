@@ -23,14 +23,10 @@ const saveData = hour => {
   localStorage.setItem(hour, document.querySelector(`[data-hour="${hour}"]`).value);
 };
 
-
 //recall saved data upon load
 const checkStorage = () => {
-  for(textArea of infoTextAreas){
-    data = localStorage.getItem(textArea.dataset.hour);
-    if (data !== null) {
-      textArea.innerHTML = data;
-    };
+  for(textArea of infoTextAreas) {
+    textArea.innerHTML = localStorage.getItem(textArea.dataset.hour) ?? '';
   };
 };
 
